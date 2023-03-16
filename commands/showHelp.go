@@ -6,10 +6,12 @@ import (
 	"strings"
 )
 
+// showHelp prints a list of commands categorised by their groups to the console.
 func (group *Group) showHelp(_ []string) {
 	fmt.Printf("\nShowing help for %s\n\n%s\n", os.Getenv("PROJECT_NAME"), group.formatHelp(group.name, 0))
 }
 
+// Group.formatHelp formats all the Command provided within the targeted group for displaying in showHelp.
 func (group *Group) formatHelp(groupPrefix string, indent int) string {
 	strIndent := createIndent(indent)
 
@@ -52,6 +54,7 @@ func (group *Group) formatHelp(groupPrefix string, indent int) string {
 	return message
 }
 
+// Command.formatHelp formats the targeted command for displaying in GroupStruct.formatHelp and Group.showHelp
 func (command *Command) formatHelp(groupPrefix string, strIndent string) string {
 	commandNamePart := fmt.Sprintf("%sName: \"%s\"\n", strIndent, command.name)
 
@@ -83,6 +86,7 @@ func (command *Command) formatHelp(groupPrefix string, strIndent string) string 
 	return fmt.Sprintf(`%s%s%s%s`, commandNamePart, execPart, commandDescriptionPart, commandAliasesPart)
 }
 
+// createIndent creates a string of tabs as long as the provided indent value.
 func createIndent(indent int) string {
 	return strings.Repeat("\t", indent)
 }

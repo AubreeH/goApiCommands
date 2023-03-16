@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// RunCommand executes the command established in Setup matching the arguments provided or if no arguments are provided then the arguments passed when running the go application initially.
 func (group *Group) RunCommand(args ...string) error {
 	err := group.compile()
 	if err != nil {

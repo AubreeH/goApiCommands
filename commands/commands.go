@@ -4,6 +4,7 @@ import (
 	"log"
 )
 
+// Setup initializes the base command Group. Establish all of your commands here.
 func Setup(handler func(group *Group)) Group {
 	commands := make(map[string]Command)
 	subGroups := make(map[string]Group)
@@ -24,6 +25,7 @@ func Setup(handler func(group *Group)) Group {
 	return group
 }
 
+// Group.Group allows for grouping of commands when displaying help.
 func (group *Group) Group(name string, handler func(group *Group)) {
 	_, ok := group.groups[name]
 	if !ok {
@@ -43,6 +45,7 @@ func (group *Group) Group(name string, handler func(group *Group)) {
 	}
 }
 
+// Group.Command adds a new Command to the group with the provided handler, name, description, and aliases.
 func (group *Group) Command(handler CommandHandler, name string, description string, aliases ...string) {
 	_, ok := group.commands[name]
 	if !ok {
