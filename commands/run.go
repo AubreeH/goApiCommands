@@ -26,7 +26,7 @@ func (group *Group) RunCommand(args ...string) error {
 	if len(cmdArgs) > 1 {
 		commandName = cmdArgs[1]
 		if len(cmdArgs) > 2 {
-			commandArguments = cmdArgs[1 : len(cmdArgs)-1]
+			commandArguments = cmdArgs[1:]
 		}
 	}
 
@@ -34,8 +34,8 @@ func (group *Group) RunCommand(args ...string) error {
 	if ok {
 		handler(commandArguments)
 	} else {
-		fmt.Printf("Unrecognised Command: \"%s\"\nDisplay command info with \"help\" command\n", commandName)
-		return fmt.Errorf("Unrecognised Command: \"%s\"\nDisplay command info with \"help\" command\n", commandName)
+		fmt.Printf("unrecognised command: \"%s\"\ndisplay command info with \"help\" command\n", commandName)
+		return fmt.Errorf("unrecognised command: \"%s\"\ndisplay command info with \"help\" command", commandName)
 	}
 
 	return nil
